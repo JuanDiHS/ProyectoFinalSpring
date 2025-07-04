@@ -1,0 +1,16 @@
+<!-- src/main/resources/templates/fragments/base.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="base">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Título dinámico -->
+    <title th:insert="~{::title}">App</title>
+  </head>
+  <body>
+    <!-- Inserta aquí el cuerpo de la vista hija -->
+    <div th:insert="~{::body}">[sin body]</div>
+  </body>
+</html>
+
+
+

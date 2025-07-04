@@ -1,0 +1,11 @@
+<!-- src/main/resources/templates/cliente/list.html -->
+<!-- SOLO el bloque de fragmento, sin <html>, <head> ni <body> -->
+<th:block th:replace="fragments/base :: base">
+  <!-- define solo el title -->
+  <th:block th:fragment="title">Listado Mínimo</th:block>
+  
+  <!-- define solo el body -->
+  <th:block th:fragment="body">
+    <h1>– Prueba de fragmentos –</h1>
+  </th:block>
+</th:block>

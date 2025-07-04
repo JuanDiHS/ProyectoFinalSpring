@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="base">
+  <head>
+    <meta charset="UTF-8">
+    <title th:insert="~{::title}">Mi App</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  </head>
+  <body>
+    <nav><!-- tu navbar --></nav>
+    <div class="container">
+      <div th:insert="~{::body}"></div>
+    </div>
+  </body>
+</html>
+
