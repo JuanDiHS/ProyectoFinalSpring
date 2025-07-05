@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/base :: base('Listado de Usuarios',~{this::body})}">
+  <th:block th:fragment="body">
+    <h1>Usuarios</h1>
+    <a class="btn btn-primary mb-3" th:href="@{/usuario/nuevo}">Nuevo Usuario</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre Usuario</th>
+          <th>Rol</th>
+          <th>AdminGen ID</th>
+          <th>Cliente ID</th>
+          <th>Empleado ID</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="u : ${usuarios}">
+          <td th:text="${u.id}">1</td>
+          <td th:text="${u.nombreUsuario}">jdoe</td>
+          <td th:text="${u.rol}">CLIENTE</td>
+          <td th:text="${u.administradorGeneralId}">10</td>
+          <td th:text="${u.clienteId}">20</td>
+          <td th:text="${u.empleadoId}">30</td>
+          <td>
+            <a th:href="@{|/usuario/editar/${u.id}|}" class="btn btn-sm btn-warning">Editar</a>
+            <a th:href="@{|/usuario/borrar/${u.id}|}" class="btn btn-sm btn-danger"
+               onclick="return confirm('¿Borrar usuario?');">Borrar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </th:block>
+</html>

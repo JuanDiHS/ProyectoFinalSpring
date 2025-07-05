@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/base :: base(
+        ${reserva.id} == null ? 'Nueva Reserva' : 'Editar Reserva',
+        ~{this::content}
+      )">
+
+  <th:block th:fragment="content">
+    <h1 th:text="${reserva.id} == null ? 'Nueva Reserva' : 'Editar Reserva'"></h1>
+    <form th:action="@{/reserva}" th:object="${reserva}" method="post">
+      <input type="hidden" th:field="*{id}" />
+      <div class="mb-3">
+        <label>Cliente</label>
+        <!-- enlaza al objeto cliente.id, no a clienteId -->
+        <input type="number" class="form-control" th:field="*{cliente.id}" />
+      </div>
+      <div class="mb-3">
+        <label>Habitación</label>
+        <!-- idem para habitación -->
+        <input type="number" class="form-control" th:field="*{habitacion.id}" />
+      </div>
+      <div class="mb-3">
+        <label>Fecha Inicio</label>
+        <input type="date" class="form-control" th:field="*{fechaInicio}" />
+      </div>
+      <div class="mb-3">
+        <label>Fecha Final</label>
+        <input type="date" class="form-control" th:field="*{fechaFinal}" />
+      </div>
+      <div class="mb-3">
+        <label>Días</label>
+        <input type="number" class="form-control" th:field="*{cantidadDias}" />
+      </div>
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" th:field="*{estado}" />
+        <label class="form-check-label">Activa</label>
+      </div>
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <a th:href="@{/reserva}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </th:block>
+
+</html>

@@ -1,14 +1,41 @@
-<!-- src/main/resources/templates/fragments/base.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="base">
-  <head>
-    <meta charset="UTF-8">
-    <!-- Título dinámico -->
-    <title th:insert="~{::title}">App</title>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="base(title, body)">
+ +  <head>
++    <meta charset="UTF-8">
++    <!-- ahora lo tratamos como texto plano -->
++    <title th:text="${title}">Mi App</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
   </head>
-  <body>
-    <!-- Inserta aquí el cuerpo de la vista hija -->
-    <div th:insert="~{::body}">[sin body]</div>
+
+    <!-- NAVBAR GLOBAL -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">🏨 HotelApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" th:href="@{/cliente}">Clientes</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/reserva}">Reservas</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/usuario}">Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/hotel}">Hoteles</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/habitacion}">Habitaciones</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div th:insert="${body}"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-…tu‑hash…" crossorigin="anonymous"></script>
   </body>
 </html>
 

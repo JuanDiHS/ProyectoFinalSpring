@@ -1,0 +1,30 @@
+<!-- templates/reserva/list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/base :: base('Listado de Reservas',~{this::body})}">
+  <th:block th:fragment="body">
+    <h1>Reservas</h1>
+    <a class="btn btn-primary mb-3" th:href="@{/reserva/nuevo}">Nueva Reserva</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Cliente</th><th>Habitación</th><th>Inicio</th><th>Fin</th><th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="r : ${reservas}">
+          <td th:text="${r.id}">1</td>
+          <td th:text="${r.clienteId}">10</td>
+          <td th:text="${r.habitacionId}">101</td>
+          <td th:text="${r.fechaInicio}">2025-07-04</td>
+          <td th:text="${r.fechaFinal}">2025-07-06</td>
+          <td>
+            <a th:href="@{|/reserva/editar/${r.id}|}" class="btn btn-sm btn-warning">Editar</a>
+            <a th:href="@{|/reserva/borrar/${r.id}|}" class="btn btn-sm btn-danger"
+               onclick="return confirm('¿Borrar reserva?');">Borrar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </th:block>
+</html>

@@ -1,0 +1,30 @@
+<!-- templates/habitacion/list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/base :: base('Listado de Habitaciones',~{this::body})}">
+  <th:block th:fragment="body">
+    <h1>Habitaciones</h1>
+    <a class="btn btn-primary mb-3" th:href="@{/habitacion/nuevo}">Nueva Habitación</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Número</th><th>Tipo</th><th>Hotel</th><th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="h : ${habitaciones}">
+          <td th:text="${h.id}">1</td>
+          <td th:text="${h.numero}">101</td>
+          <td th:text="${h.tipoHabitacionId}">Suite</td>
+          <td th:text="${h.hotelId}">Hotel A</td>
+          <td>
+            <a th:href="@{|/habitacion/editar/${h.id}|}" class="btn btn-sm btn-warning">Editar</a>
+            <a th:href="@{|/habitacion/borrar/${h.id}|}" class="btn btn-sm btn-danger"
+               onclick="return confirm('¿Borrar habitación?');">Borrar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </th:block>
+</html>
+

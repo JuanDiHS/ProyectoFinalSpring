@@ -1,11 +1,51 @@
-<!-- src/main/resources/templates/cliente/list.html -->
-<!-- SOLO el bloque de fragmento, sin <html>, <head> ni <body> -->
-<th:block th:replace="fragments/base :: base">
-  <!-- define solo el title -->
-  <th:block th:fragment="title">Listado Mínimo</th:block>
-  
-  <!-- define solo el body -->
-  <th:block th:fragment="body">
-    <h1>– Prueba de fragmentos –</h1>
+<!— src/main/resources/templates/cliente/list.html —>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/base :: base(
+        ${'Listado de Clientes'}, 
+        ~{this::content}
+      )">
+
+  <!-- fragmento content -->
+  <th:block th:fragment="content">
+    <h1>Clientes</h1>
+    <a class="btn btn-primary mb-3" th:href="@{/cliente/nuevo}">
+      Nuevo Cliente
+    </a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre completo</th>
+          <th>Cédula</th>
+          <th>Dirección</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="c : ${clientes}">
+          <td th:text="${c.id}">1</td>
+          <td th:text="${c.primerNombre} + ' ' + ${c.primerApellido}">Nombre</td>
+          <td th:text="${c.cedula}">00000000</td>
+          <td th:text="${c.direccion}">Dirección</td>
+          <td>
+            <a th:href="@{|/cliente/editar/${c.id}|}" 
+               class="btn btn-sm btn-warning">
+              Editar
+            </a>
+            <a th:href="@{|/cliente/borrar/${c.id}|}" 
+               class="btn btn-sm btn-danger"
+               onclick="return confirm('¿Seguro?');">
+              Borrar
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </th:block>
-</th:block>
+
+</html>
+
+
+
+

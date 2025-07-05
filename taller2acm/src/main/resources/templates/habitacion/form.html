@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/base :: base(~{this::title},~{this::body})}">
+
+  <th:block th:fragment="title">
+    <span th:text="${habitacion.id} == null ? 'Nueva Habitación' : 'Editar Habitación'">
+      Nueva Habitación
+    </span>
+  </th:block>
+
+  <th:block th:fragment="body">
+    <h1 th:text="${habitacion.id} == null ? 'Nueva Habitación' : 'Editar Habitación'"></h1>
+    <form th:action="@{/habitacion}" th:object="${habitacion}" method="post">
+      <input type="hidden" th:field="*{id}" />
+
+      <div class="mb-3">
+        <label>Número</label>
+        <input type="number" class="form-control" th:field="*{numeroHabitacion}" />
+      </div>
+      <div class="mb-3">
+        <label>Tipo de Habitación ID</label>
+        <input type="number" class="form-control" th:field="*{tipoHabitacion.id}" />
+      </div>
+      <div class="mb-3">
+        <label>Hotel ID</label>
+        <input type="number" class="form-control" th:field="*{hotel.id}" />
+      </div>
+
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <a th:href="@{/habitacion}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </th:block>
+
+</html>

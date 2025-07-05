@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/base :: base('Inicio',~{this::body})}">
+
+  <th:block th:fragment="body">
+    <h1>Bienvenido a HotelApp</h1>
+    <p>Selecciona una sección:</p>
+    <div class="d-grid gap-2 d-md-flex flex-md-wrap">
+      <a class="btn btn-outline-primary m-1" th:href="@{/cliente}">Clientes</a>
+      <a class="btn btn-outline-primary m-1" th:href="@{/reserva}">Reservas</a>
+      <a class="btn btn-outline-primary m-1" th:href="@{/usuario}">Usuarios</a>
+      <a class="btn btn-outline-primary m-1" th:href="@{/hotel}">Hoteles</a>
+      <a class="btn btn-outline-primary m-1" th:href="@{/habitacion}">Habitaciones</a>
+      <a class="btn btn-outline-primary m-1" th:href="@{/tipohabitacion}">Tipos Habitación</a>
+      <a class="btn btn-outline-primary m-1" th:href="@{/pago}">Pagos</a>
+      <a class="btn btn-outline-primary m-1" th:href="@{/factura}">Facturas</a>
+    </div>
+  </th:block>
+
+</html>

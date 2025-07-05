@@ -1,0 +1,25 @@
+<!-- templates/hotel/form.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/base :: base(~{this::title},~{this::body})}">
+  <th:block th:fragment="title">
+    <span th:text="${hotel.id} == null ? 'Nuevo Hotel' : 'Editar Hotel'">Hotel</span>
+  </th:block>
+  <th:block th:fragment="body">
+    <h1 th:text="${hotel.id} == null ? 'Nuevo Hotel' : 'Editar Hotel'"></h1>
+    <form th:action="@{/hotel}" th:object="${hotel}" method="post">
+      <input type="hidden" th:field="*{id}" />
+      <div class="mb-3">
+        <label>Nombre</label>
+        <input class="form-control" th:field="*{nombre}" />
+      </div>
+      <div class="mb-3">
+        <label>Dirección</label>
+        <input class="form-control" th:field="*{direccion}" />
+      </div>
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <a th:href="@{/hotel}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </th:block>
+</html>
+

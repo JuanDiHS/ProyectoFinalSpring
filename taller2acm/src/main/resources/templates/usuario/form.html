@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/base :: base(~{this::title},~{this::body})}">
+
+  <th:block th:fragment="title">
+    <span th:text="${usuario.id} == null ? 'Nuevo Usuario' : 'Editar Usuario'">
+      Nuevo Usuario
+    </span>
+  </th:block>
+
+  <th:block th:fragment="body">
+    <h1 th:text="${usuario.id} == null ? 'Nuevo Usuario' : 'Editar Usuario'"></h1>
+    <form th:action="@{/usuario}" th:object="${usuario}" method="post">
+      <input type="hidden" th:field="*{id}" />
+
+      <div class="mb-3">
+        <label>Nombre de Usuario</label>
+        <input class="form-control" th:field="*{nombreUsuario}" />
+      </div>
+      <div class="mb-3">
+        <label>Contraseña</label>
+        <input type="password" class="form-control" th:field="*{contrasena}" />
+      </div>
+      <div class="mb-3">
+        <label>Rol</label>
+        <select class="form-select" th:field="*{rol}">
+          <option value="ADMIN">ADMIN</option>
+          <option value="CLIENTE">CLIENTE</option>
+          <option value="EMPLEADO">EMPLEADO</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>AdminGeneral ID</label>
+        <input type="number" class="form-control" th:field="*{administradorGeneral.id}" />
+      </div>
+      <div class="mb-3">
+        <label>Cliente ID</label>
+        <input type="number" class="form-control" th:field="*{cliente.id}" />
+      </div>
+      <div class="mb-3">
+        <label>Empleado ID</label>
+        <input type="number" class="form-control" th:field="*{empleado.id}" />
+      </div>
+
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <a th:href="@{/usuario}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </th:block>
+
+</html>
